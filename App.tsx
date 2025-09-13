@@ -1,10 +1,15 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, View } from 'react-native'
+import { useTranslation } from 'react-i18next'
+import LanguageSelector from './src/components/LanguageSelector/LanguageSelector'
 
 export default function App() {
+  const { t } = useTranslation()
+
   return (
     <View style={styles.container}>
-      <Text>Countries Explorer App!</Text>
+      <LanguageSelector />
+      <Text>{t('home.title')}</Text>
       <StatusBar style="auto" />
     </View>
   )
