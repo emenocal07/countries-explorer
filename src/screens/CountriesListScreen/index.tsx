@@ -1,8 +1,8 @@
 import { Text, View } from '@components/Themed'
-import { styles } from './CountriesListScreen.styles'
+import { ROUTES } from '@constants/routes'
 import { router } from 'expo-router'
 import { Button } from 'react-native'
-import { ROUTES } from '@constants/routes'
+import { styles } from './CountriesListScreen.styles'
 
 export default function CountriesListScreen() {
   return (

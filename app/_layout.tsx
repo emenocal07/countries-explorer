@@ -1,13 +1,13 @@
-import '../src/i18n/index'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native'
 import { useFonts } from 'expo-font'
 import { Stack } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import { useEffect } from 'react'
-import { ROUTES } from '../src/constants/routes'
-import { useColorScheme } from '../src/hooks/useColorScheme'
+import { useColorScheme } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { ROUTES } from '../src/constants/routes'
+import '../src/i18n/index'
 
 export { ErrorBoundary } from 'expo-router'
 

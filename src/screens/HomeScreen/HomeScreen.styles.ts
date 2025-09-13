@@ -11,8 +11,4 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 16,
   },
-  id: {
-    fontSize: 18,
-    color: '#333',
-  },
 })

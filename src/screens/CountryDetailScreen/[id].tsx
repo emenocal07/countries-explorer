@@ -1,5 +1,6 @@
 import { useLocalSearchParams } from 'expo-router'
-import { Text, View } from 'react-native'
+
+import { Text, View } from '@components/Themed'
 import { styles } from './CountryDetailScreen.styles'
 
 export default function CountryDetailScreen() {
