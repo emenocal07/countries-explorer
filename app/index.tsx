@@ -11,5 +11,5 @@ export default function Index() {
       router.replace(ROUTES.HOME)
     }
   }, [])
-  return 'null'
+  return null
 }
