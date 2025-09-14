@@ -6,7 +6,7 @@ A React Native app built with Expo for exploring country information. The app wi
 
 - [X] Initial repository setup
 - [X] Structure project
-- [ ] Home screen and styles library
+- [X] Home screen and styles library
 - [ ] Country list and API connection
 - [ ] Country detail screen
 - [ ] Enhancements
