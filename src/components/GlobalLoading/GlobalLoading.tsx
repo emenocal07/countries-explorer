@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
 import { ActivityIndicator } from 'react-native-paper'
 import { useGlobalLoading } from '../../store/globalLoading'
 
@@ -13,16 +13,4 @@ export const GlobalLoading = () => {
   )
 }
 
-const styles = StyleSheet.create({
-  overlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(255,255,255,0.5)',
-    zIndex: 9999,
-  },
-})
+import { styles } from './GlobalLoading.styles'
