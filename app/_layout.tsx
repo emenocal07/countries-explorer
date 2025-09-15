@@ -1,5 +1,7 @@
+import { GlobalLoading } from '@components/GlobalLoading/GlobalLoading'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { theme } from '@theme/paperTheme'
 import { useFonts } from 'expo-font'
 import { Stack } from 'expo-router'
@@ -19,6 +21,8 @@ export const unstable_settings = {
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
+
+const queryClient = new QueryClient()
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
@@ -44,11 +48,14 @@ export default function RootLayout() {
   }
 
   return (
-    <PaperProvider theme={theme}>
-      <SafeAreaView style={{ flex: 1 }}>
-        <RootLayoutNav />
-      </SafeAreaView>
-    </PaperProvider>
+    <QueryClientProvider client={queryClient}>
+      <PaperProvider theme={theme}>
+        <SafeAreaView style={{ flex: 1 }}>
+          <RootLayoutNav />
+          <GlobalLoading />
+        </SafeAreaView>
+      </PaperProvider>
+    </QueryClientProvider>
   )
 }
 
@@ -60,7 +67,7 @@ function RootLayoutNav() {
       <Stack>
         <Stack.Screen name={ROUTES.INDEX} options={{ headerShown: false }} />
         <Stack.Screen name={ROUTES.HOME} options={{ headerShown: false }} />
-        <Stack.Screen name={ROUTES.COUNTRIES_LIST} options={{ title: 'Countries List' }} />
+        <Stack.Screen name={ROUTES.COUNTRIES_LIST} options={{ headerShown: false }} />
         <Stack.Screen name={ROUTES.COUNTRY_DETAIL} options={{ title: 'Country Detail' }} />
       </Stack>
     </ThemeProvider>
