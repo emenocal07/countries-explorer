@@ -1,19 +1,33 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Button, View } from 'react-native'
+import { View } from 'react-native'
+import { SegmentedButtons } from 'react-native-paper'
+import { styles } from './LanguageSelector.styles'
 
 const LanguageSelector = () => {
   const { i18n } = useTranslation()
-  const [_, setLanguage] = React.useState(i18n.language)
+  const [selected, setSelected] = useState(i18n.language)
 
   useEffect(() => {
-    setLanguage(i18n.language)
+    setSelected(i18n.language)
   }, [i18n.language])
 
+  const handleChange = (value: string) => {
+    setSelected(value)
+    i18n.changeLanguage(value)
+  }
+
   return (
-    <View>
-      <Button title="Cambiar a inglés" onPress={() => i18n.changeLanguage('en-US')} />
-      <Button title="Cambiar a español" onPress={() => i18n.changeLanguage('es-ES')} />
+    <View style={styles.container}>
+      <SegmentedButtons
+        value={selected}
+        onValueChange={handleChange}
+        buttons={[
+          { value: 'en-US', label: 'English', labelStyle: { fontSize: 14 } },
+          { value: 'es-ES', label: 'Español', labelStyle: { fontSize: 14 } },
+        ]}
+        style={styles.segmented}
+      />
     </View>
   )
 }

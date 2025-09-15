@@ -1,10 +1,12 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native'
+import { theme } from '@theme/paperTheme'
 import { useFonts } from 'expo-font'
 import { Stack } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import { useEffect } from 'react'
 import { useColorScheme } from 'react-native'
+import { PaperProvider } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { ROUTES } from '../src/constants/routes'
 import '../src/i18n/index'
@@ -20,6 +22,8 @@ SplashScreen.preventAutoHideAsync()
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
+    Macondo: require('@assets/fonts/Macondo-Regular.ttf'),
+    Oldenburg: require('@assets/fonts/Oldenburg-Regular.ttf'),
     SpaceMono: require('@assets/fonts/SpaceMono-Regular.ttf'),
     ...FontAwesome.font,
   })
@@ -40,9 +44,11 @@ export default function RootLayout() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <RootLayoutNav />
-    </SafeAreaView>
+    <PaperProvider theme={theme}>
+      <SafeAreaView style={{ flex: 1 }}>
+        <RootLayoutNav />
+      </SafeAreaView>
+    </PaperProvider>
   )
 }
 

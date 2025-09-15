@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export const STORAGE_KEYS = {
   LANGUAGE: 'language',
+  HAS_SEEN_INTRO: 'has_seenIntro',
 }
 
 class LocalStorageService {
