@@ -27,9 +27,7 @@ const queryClient = new QueryClient()
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    Macondo: require('@assets/fonts/Macondo-Regular.ttf'),
-    Oldenburg: require('@assets/fonts/Oldenburg-Regular.ttf'),
-    SpaceMono: require('@assets/fonts/SpaceMono-Regular.ttf'),
+    Roboto: require('@assets/fonts/Roboto-VariableFont.ttf'),
     ...FontAwesome.font,
   })
 
