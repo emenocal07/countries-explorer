@@ -1,11 +1,11 @@
 import LanguageSelector from '@components/LanguageSelector/LanguageSelector'
+import { ScreenWrapper } from '@components/ScreenWrapper/ScreenWrapper'
 import StyledButton from '@components/StyledButton/StyledButton'
 import StyledText from '@components/StyledText/StyledText'
 import StyledTitle from '@components/StyledTitle/StyledTitle'
 import { View } from '@components/Themed'
 import { ROUTES } from '@constants/routes'
 import { router } from 'expo-router'
-import { StatusBar } from 'expo-status-bar'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import LocalStorageService, { STORAGE_KEYS } from '../../services/LocalStorage.service'
@@ -35,20 +35,21 @@ export default function HomeScreen() {
   // if (!showHome) return null
 
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <View style={styles.languageSelector}>
-        <LanguageSelector />
+    <ScreenWrapper>
+      <View style={styles.container}>
+        <View style={styles.languageSelector}>
+          <LanguageSelector />
+        </View>
+        <StyledTitle style={styles.title}>{t('home.title')}</StyledTitle>
+        <View style={styles.descriptionWrapper}>
+          <StyledText style={styles.descriptionText}>{t('home.description')}</StyledText>
+        </View>
+        <View style={styles.buttonWrapper}>
+          <StyledButton mode="contained" onPress={handleContinue}>
+            {t('continue', 'Continue')}
+          </StyledButton>
+        </View>
       </View>
-      <StyledTitle style={styles.title}>{t('home.title')}</StyledTitle>
-      <View style={styles.descriptionWrapper}>
-        <StyledText style={styles.descriptionText}>{t('home.description')}</StyledText>
-      </View>
-      <View style={styles.buttonWrapper}>
-        <StyledButton mode="contained" onPress={handleContinue}>
-          {t('continue', 'Continue')}
-        </StyledButton>
-      </View>
-    </View>
+    </ScreenWrapper>
   )
 }

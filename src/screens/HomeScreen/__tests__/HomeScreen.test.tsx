@@ -1,6 +1,7 @@
 import { ROUTES } from '@constants/routes'
 import { act, fireEvent, render } from '@testing-library/react-native'
 import React from 'react'
+import { PaperProvider } from 'react-native-paper'
 import HomeScreen from '../index'
 
 jest.mock('react-i18next', () => ({
@@ -11,9 +12,16 @@ jest.mock('react-i18next', () => ({
       if (key === 'continue') return 'Continue'
       return fallback || key
     },
-    i18n: { changeLanguage: jest.fn() },
+    i18n: { language: 'en-US', changeLanguage: jest.fn() },
   }),
 }))
+
+jest.mock('react-native-paper/src/components/MaterialCommunityIcon', () => {
+  return {
+    __esModule: true,
+    default: (props: any) => null,
+  }
+})
 
 const mockedReplace = jest.fn()
 jest.mock('expo-router', () => ({
@@ -36,14 +44,22 @@ jest.mock('../../../services/LocalStorage.service', () => ({
 
 describe('HomeScreen', () => {
   it('renders title, description, and button', () => {
-    const { getAllByText } = render(<HomeScreen />)
+    const { getAllByText } = render(
+      <PaperProvider>
+        <HomeScreen />
+      </PaperProvider>
+    )
     expect(getAllByText('Continue')[1]).toBeTruthy()
     expect(getAllByText('Countries Explorer')[0]).toBeTruthy()
     expect(getAllByText(/Explore information/i)[0]).toBeTruthy()
   })
 
   it('calls router.replace when button is pressed', async () => {
-    const { getAllByText } = render(<HomeScreen />)
+    const { getAllByText } = render(
+      <PaperProvider>
+        <HomeScreen />
+      </PaperProvider>
+    )
     const button = getAllByText('Continue')[1]
     await act(async () => {
       fireEvent.press(button)
