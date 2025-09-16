@@ -6,6 +6,7 @@ import { theme } from '@theme/paperTheme'
 import { useFonts } from 'expo-font'
 import { Stack } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
+import { StatusBar } from 'expo-status-bar'
 import { useEffect } from 'react'
 import { useColorScheme } from 'react-native'
 import { PaperProvider } from 'react-native-paper'
@@ -51,6 +52,7 @@ export default function RootLayout() {
     <QueryClientProvider client={queryClient}>
       <PaperProvider theme={theme}>
         <SafeAreaView style={{ flex: 1 }}>
+          <StatusBar style="auto" />
           <RootLayoutNav />
           <GlobalLoading />
         </SafeAreaView>
@@ -68,7 +70,7 @@ function RootLayoutNav() {
         <Stack.Screen name={ROUTES.INDEX} options={{ headerShown: false }} />
         <Stack.Screen name={ROUTES.HOME} options={{ headerShown: false }} />
         <Stack.Screen name={ROUTES.COUNTRIES_LIST} options={{ headerShown: false }} />
-        <Stack.Screen name={ROUTES.COUNTRY_DETAIL} options={{ title: 'Country Detail' }} />
+        <Stack.Screen name={ROUTES.COUNTRY_DETAIL} options={{ headerShown: false }} />
       </Stack>
     </ThemeProvider>
   )

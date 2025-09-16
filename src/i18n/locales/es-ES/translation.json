@@ -4,5 +4,13 @@
     "title": "Bienvenido a Countries Explorer",
     "description": "Explora información sobre países de todo el mundo."
   },
+   "countriesList": {
+    "title": "Lista de Países",
+    "searchPlaceholder": "Buscar país...",
+    "page": "Página",
+    "of": "de",
+    "previous": "Anterior",
+    "next": "Siguiente"
+  },
   "continue": "Continuar"
 }
