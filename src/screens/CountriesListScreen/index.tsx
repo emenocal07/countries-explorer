@@ -5,15 +5,16 @@ import StyledTitle from '@components/StyledTitle/StyledTitle'
 import { useCountriesQuery } from '@services/Countries.service'
 import { useRouter } from 'expo-router'
 import React, { useEffect, useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { FlatList, Pressable, Text, TextInput, View } from 'react-native'
 import { useDebouncedValue } from 'src/hooks/useDebouncedValue'
-import i18n from 'src/i18n'
 import { Country } from 'src/schema/Country.schema'
 import { useGlobalLoading } from 'src/store/globalLoading'
 import { styles } from './CountriesListScreen.styles'
 
 export default function CountriesListScreen() {
   const { data: countries, isLoading, error } = useCountriesQuery()
+  const { t, i18n } = useTranslation()
   const setGlobalLoading = useGlobalLoading((state) => state.setLoading)
   const router = useRouter()
   const [search, setSearchRaw] = useState('')
@@ -35,10 +36,12 @@ export default function CountriesListScreen() {
   const filteredCountries = useMemo(() => {
     if (!countries) return []
     if (!debouncedSearch) return countries
-    return countries.filter((c) =>
-      c.name.common.toLowerCase().includes(debouncedSearch.toLowerCase())
-    )
-  }, [countries, debouncedSearch])
+    const isSpanish = i18n.language.startsWith('es')
+    return countries.filter((c) => {
+      const name = isSpanish ? c.nameSpa : c.nameEng
+      return name?.toLowerCase().includes(debouncedSearch.toLowerCase())
+    })
+  }, [countries, debouncedSearch, i18n.language])
 
   const totalItems = filteredCountries.length
   const totalPages = Math.max(1, Math.ceil(totalItems / PAGE_SIZE))
@@ -58,47 +61,50 @@ export default function CountriesListScreen() {
 
   return (
     <ScreenWrapper>
-      <StyledTitle style={styles.title}>List of Countries</StyledTitle>
+      <StyledTitle style={styles.title}>
+        {t('countriesList.title', 'List of Countries')}
+      </StyledTitle>
       <TextInput
         style={styles.search}
-        placeholder="Buscar país..."
+        placeholder={t('countriesList.searchPlaceholder', 'Buscar país...')}
         value={search}
         onChangeText={setSearch}
         autoCorrect={false}
         autoCapitalize="none"
       />
       <FlatList
+        showsVerticalScrollIndicator={false}
         data={paginatedCountries}
         renderItem={({ item }: { item: Country }) => {
           const isSpanish = i18n.language.startsWith('es')
           const displayName = isSpanish
-            ? item.name.translations?.es?.common || item.name.common
-            : item.name.translations?.en?.common || item.name.common
+            ? item.nameSpa || item.name.common
+            : item.nameEng || item.name.common
           return (
             <Pressable onPress={() => router.push(`/countries-list/${item.cca3}`)}>
               <CountryItem name={displayName} flagUrl={item.flags.png} region={item.region} />
             </Pressable>
           )
         }}
-        keyExtractor={(item: Country) => item.name.common}
+        keyExtractor={(item) => item.cca3}
       />
       {totalPages > 1 && (
         <>
           <StyledText style={styles.paginationText}>
-            Página {page} de {totalPages}
+            {t('countriesList.page', 'Página')} {page} {t('countriesList.of', 'de')} {totalPages}
           </StyledText>
           <View style={styles.paginationContainer}>
             <StyledText
               style={[styles.paginationButton, { color: page > 1 ? '#6B4FAA' : '#ccc' }]}
               onPress={() => page > 1 && setPage(page - 1)}
             >
-              Anterior
+              {t('countriesList.previous', 'Anterior')}
             </StyledText>
             <StyledText
               style={[styles.paginationButton, { color: page < totalPages ? '#6B4FAA' : '#ccc' }]}
               onPress={() => page < totalPages && setPage(page + 1)}
             >
-              Siguiente
+              {t('countriesList.next', 'Siguiente')}
             </StyledText>
           </View>
         </>
