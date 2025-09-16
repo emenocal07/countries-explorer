@@ -5,5 +5,13 @@
     "description": "Explore information about countries around the world."
 
   },
+    "countriesList": {
+    "title": "List of Countries",
+    "searchPlaceholder": "Search country...",
+    "page": "Page",
+    "of": "of",
+    "previous": "Previous",
+    "next": "Next"
+  },
     "continue": "Continue"
 }
