@@ -14,6 +14,7 @@ const StyledButton: React.FC<StyledButtonProps> = ({
   ...props
 }) => {
   const [textWidth, setTextWidth] = React.useState<number | null>(null)
+  const labelText = typeof children === 'string' ? children : undefined
 
   return (
     <View style={styles.wrapper}>
@@ -26,13 +27,20 @@ const StyledButton: React.FC<StyledButtonProps> = ({
       </Text>
       <Button
         {...props}
+        accessibilityLabel={labelText}
+        accessibilityRole="button"
         style={[
           {
-            width: textWidth ? Math.max(textWidth + 32, minWidth) : minWidth,
             alignSelf: 'center',
+            minHeight: 44,
+            justifyContent: 'center',
+            paddingHorizontal: 24,
+            width: 'auto',
+            maxWidth: '90%',
           },
           style,
         ]}
+        labelStyle={{ fontSize: 16 }}
       >
         {children}
       </Button>

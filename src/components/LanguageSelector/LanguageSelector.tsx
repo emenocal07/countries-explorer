@@ -25,6 +25,8 @@ const LanguageSelector = () => {
         color="#fff"
         onPress={() => setVisible(true)}
         uppercase={false}
+        accessibilityLabel={t('languageSelector.open', 'Open language selector')}
+        accessibilityRole="button"
       />
       <Modal
         visible={visible}
@@ -40,11 +42,13 @@ const LanguageSelector = () => {
                 value: 'en-US',
                 label: t('languageSelector.english', 'English'),
                 labelStyle: { fontSize: 14 },
+                accessibilityLabel: t('languageSelector.english', 'English'),
               },
               {
                 value: 'es-ES',
                 label: t('languageSelector.spanish', 'Español'),
                 labelStyle: { fontSize: 14 },
+                accessibilityLabel: t('languageSelector.spanish', 'Español'),
               },
             ]}
             style={styles.segmented}
@@ -57,6 +61,8 @@ const LanguageSelector = () => {
             label={t('languageSelector.close', 'Cerrar')}
             uppercase={false}
             small
+            accessibilityLabel={t('languageSelector.close', 'Cerrar')}
+            accessibilityRole="button"
           />
         </View>
       </Modal>
