@@ -19,6 +19,7 @@ export default function HomeScreen() {
     LocalStorageService.getItem<boolean>(STORAGE_KEYS.HAS_SEEN_INTRO).then(
       (value: boolean | null) => {
         if (value) {
+          // For future usage: Left implementation of one time screen showing for user onboarding
           // setShowHome(false)
           // router.replace(ROUTES.COUNTRIES_LIST)
         }
