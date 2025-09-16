@@ -6,6 +6,7 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ActivityIndicator, Image, ScrollView, View } from 'react-native'
 import { Button } from 'react-native-paper'
+import i18n from 'src/i18n'
 import { Country } from 'src/schema/Country.schema'
 import { styles as detailStyles } from './CountryDetailScreen.styles'
 
@@ -14,7 +15,7 @@ export default function CountryDetailScreen() {
   const { data: countries, isLoading, error } = useCountriesQuery()
   const country: Country | undefined = countries?.find((c) => c.cca3 === id)
   const [imageLoaded, setImageLoaded] = useState(false)
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
 
   if (isLoading) {
     return (

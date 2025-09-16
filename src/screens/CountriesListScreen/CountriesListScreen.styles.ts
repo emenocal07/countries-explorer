@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
   },
   title: {
     marginBottom: 16,
-    marginTop: 60,
+    marginTop: 20,
     alignSelf: 'center',
   },
   search: {

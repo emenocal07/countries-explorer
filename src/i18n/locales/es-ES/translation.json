@@ -4,13 +4,27 @@
     "title": "Bienvenido a Countries Explorer",
     "description": "Explora información sobre países de todo el mundo."
   },
-   "countriesList": {
+  "countriesList": {
     "title": "Lista de Países",
     "searchPlaceholder": "Buscar país...",
     "page": "Página",
     "of": "de",
     "previous": "Anterior",
     "next": "Siguiente"
+  },
+  "countryDetail": {
+    "loading": "Cargando país...",
+    "notFound": "No se encontró el país",
+    "region": "Región:",
+    "population": "Población:",
+    "capital": "Capital:",
+    "code": "Código:",
+    "back": "Regresar"
+  },
+  "languageSelector": {
+    "close": "Cerrar",
+    "english": "Inglés",
+    "spanish": "Español"
   },
   "continue": "Continuar"
 }

@@ -3,9 +3,8 @@
   "home": {
     "title": "Welcome to Countries Explorer",
     "description": "Explore information about countries around the world."
-
   },
-    "countriesList": {
+  "countriesList": {
     "title": "List of Countries",
     "searchPlaceholder": "Search country...",
     "page": "Page",
@@ -13,5 +12,19 @@
     "previous": "Previous",
     "next": "Next"
   },
-    "continue": "Continue"
+  "countryDetail": {
+    "loading": "Loading country...",
+    "notFound": "Country not found",
+    "region": "Region:",
+    "population": "Population:",
+    "capital": "Capital:",
+    "code": "Code:",
+    "back": "Back"
+  },
+  "languageSelector": {
+    "close": "Close",
+    "english": "English",
+    "spanish": "Spanish"
+  },
+  "continue": "Continue"
 }

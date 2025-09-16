@@ -4,7 +4,7 @@ import { View } from 'react-native'
 import { FAB, Modal, Portal, SegmentedButtons } from 'react-native-paper'
 
 const LanguageSelector = () => {
-  const { i18n } = useTranslation()
+  const { i18n, t } = useTranslation()
   const [selected, setSelected] = useState(i18n.language)
   const [visible, setVisible] = useState(false)
 
@@ -25,6 +25,8 @@ const LanguageSelector = () => {
         color="#fff"
         onPress={() => setVisible(true)}
         uppercase={false}
+        accessibilityLabel={t('languageSelector.open', 'Open language selector')}
+        accessibilityRole="button"
       />
       <Modal
         visible={visible}
@@ -36,8 +38,18 @@ const LanguageSelector = () => {
             value={selected}
             onValueChange={handleChange}
             buttons={[
-              { value: 'en-US', label: 'English', labelStyle: { fontSize: 14 } },
-              { value: 'es-ES', label: 'Español', labelStyle: { fontSize: 14 } },
+              {
+                value: 'en-US',
+                label: t('languageSelector.english', 'English'),
+                labelStyle: { fontSize: 14 },
+                accessibilityLabel: t('languageSelector.english', 'English'),
+              },
+              {
+                value: 'es-ES',
+                label: t('languageSelector.spanish', 'Español'),
+                labelStyle: { fontSize: 14 },
+                accessibilityLabel: t('languageSelector.spanish', 'Español'),
+              },
             ]}
             style={styles.segmented}
           />
@@ -46,9 +58,11 @@ const LanguageSelector = () => {
             style={styles.closeFab}
             color="#fff"
             onPress={() => setVisible(false)}
-            label="Cerrar"
+            label={t('languageSelector.close', 'Cerrar')}
             uppercase={false}
             small
+            accessibilityLabel={t('languageSelector.close', 'Cerrar')}
+            accessibilityRole="button"
           />
         </View>
       </Modal>
